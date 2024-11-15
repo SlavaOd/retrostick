@@ -797,12 +797,39 @@
   justify-content: center;
 }
 
+#musicBtn {
+  position: fixed;
+  bottom: 20px;      /* отступ снизу */
+  right: 20px;       /* отступ справа */
+  background: #ffcc00;
+  color: #000;
+  font-family: 'Press Start 2P', monospace; /* пиксельный шрифт */
+  font-size: 14px;
+  padding: 10px 14px;
+  border: 3px solid #000;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 3px 3px 0 #000;
+  transition: 0.2s;
+}
+
+#musicBtn:hover {
+  background: #ff9900;
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #000;
+}
 
 
   </style>
 </head>
 <body>
-
+  <audio id="bgMusic" loop>
+    <source src="./tmpmlmpkc2q.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+  </audio>
+  
+  <button id="musicBtn" onclick="toggleMusic()">🎵 Play</button>
   <!-- ===== Бегущая строка ===== -->
   <div class="ticker">
     <div class="ticker__track" id="tickerTrack">
@@ -888,10 +915,10 @@
     </div>
   
     <div class="offer__price-box">
-      <div class="price-old">Звичайна ціна: <span>1300 грн</span></div>
+      <div class="price-old">Звичайна ціна: <span>1500 грн</span></div>
       <div class="price-new">
-        <div class="economy">Ви заощаджуєте -50%</div>
-        <div class="final">649 грн</div>
+        <div class="economy">Ви заощаджуєте -15%</div>
+        <div class="final">1300 грн</div>
       </div>
     </div>
   
@@ -1075,7 +1102,20 @@
   </div>
   
   
+  <script>
+    const audio = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicBtn');
   
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "⏸ Pause";
+      } else {
+        audio.pause();
+        btn.textContent = "🎵 Play";
+      }
+    }
+  </script>
   <script>
     let stock = 24  ;
     setInterval(() => {
