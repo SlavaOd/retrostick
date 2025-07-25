@@ -756,12 +756,13 @@
     <p class="subtitle">та отримайте консультацію</p>
   
     <form id="tgForm">
-        <input type="text" name="name" placeholder="Введіть Ваше ім’я" required>
-        <input type="text" name="name" placeholder="Введіть Ваше Прізвище" required>
-        <input type="tel" name="phone" placeholder="Введіть Ваш телефон" required>
-        <input type="text" name="name" placeholder="Введіть місто та номер відділення нової пошти" required>
-        <button type="submit">ЗАМОВИТИ ЗАРАЗ</button>
-      </form>
+      <input type="text" name="firstname" placeholder="Введіть Ваше ім’я" required>
+      <input type="text" name="lastname" placeholder="Введіть Ваше Прізвище" required>
+      <input type="tel" name="phone" placeholder="Введіть Ваш телефон" required>
+      <input type="text" name="address" placeholder="Введіть місто та номер відділення нової пошти" required>
+      <button type="submit">ЗАМОВИТИ ЗАРАЗ</button>
+    </form>
+    
   
     <div class="stock-note">* Залишилось <span id="stock2">17</span> шт по знижці</div>
   
@@ -798,16 +799,21 @@
     document.getElementById("tgForm").addEventListener("submit", function (e) {
       e.preventDefault();
   
+      const firstname = this.firstname.value.trim();
+      const lastname = this.lastname.value.trim();
       const phone = this.phone.value.trim();
-      const name = this.name.value.trim();
-      const city = this.city.value.trim();
+      const address = this.address.value.trim();
   
-      if (!name || !phone || !city) {
+      if (!firstname || !lastname || !phone || !address) {
         alert("❗ Заповніть всі поля");
         return;
       }
   
-      const message = `📥 <b>Нова заявка</b>\n👤 Ім’я: <b>${name}</b>\n📞 Телефон: <b>${phone}</b>\n🏙️ Відділення НП: <b>${city}</b>`;
+      const message = `
+  📥 <b>Нова заявка</b>
+  👤 Ім’я: <b>${firstname} ${lastname}</b>
+  📞 Телефон: <b>${phone}</b>
+  🏙️ Відділення НП: <b>${address}</b>`;
   
       fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
@@ -829,6 +835,7 @@
       });
     });
   </script>
+  
   
 </body>
 </html>
