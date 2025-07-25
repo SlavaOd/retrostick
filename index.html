@@ -492,44 +492,84 @@
   text-align: center;
   padding: 48px 20px;
 }
+
 .order-form h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 900;
+  margin-bottom: 8px;
 }
+
 .order-form .subtitle {
   font-size: 1rem;
   color: #c9cfd8;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
+
 .form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 380px;
+  max-width: 400px;
   margin: 0 auto;
 }
+
 .form input {
-  padding: 14px;
+  padding: 14px 16px;
   font-size: 1rem;
-  border: none;
-  border-radius: 8px;
+  border: 1px solid #2a2d35;
+  border-radius: 10px;
+  background-color: #1a1c22;
+  color: #fff;
+  transition: border 0.2s, box-shadow 0.2s;
 }
+
+.form input::placeholder {
+  color: #8a8f9b;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #00e1ff;
+  box-shadow: 0 0 0 2px rgba(0, 225, 255, 0.3);
+}
+
 .form button {
   background: #00e1ff;
-  color: black;
+  color: #000;
   font-weight: 800;
   text-transform: uppercase;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   padding: 16px;
   border-radius: 12px;
   border: none;
+  cursor: pointer;
   box-shadow: 0 0 24px rgba(0, 225, 255, 0.4);
-  transition: 0.2s;
+  transition: all 0.2s ease;
 }
+
 .form button:hover {
   transform: translateY(-2px);
   box-shadow: 0 0 32px rgba(0, 225, 255, 0.6);
 }
+.form select {
+  padding: 14px 16px;
+  font-size: 1rem;
+  border: 1px solid #2a2d35;
+  border-radius: 10px;
+  background-color: #1a1c22;
+  color: #fff;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}
+.form select:focus {
+  outline: none;
+  border-color: #00e1ff;
+  box-shadow: 0 0 0 2px rgba(0, 225, 255, 0.3);
+}
+
 
 .stock-note {
   margin-top: 16px;
@@ -609,6 +649,140 @@
   right: 8px;
 }
 
+.social-block {
+  margin-top: -40px;
+  text-align: center;
+  color: #fff;
+  padding-bottom: 40px;
+}
+
+.social-block p {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  color: #c9cfd8;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons a img {
+  width: 36px;
+  height: 36px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  filter: brightness(1.2);
+}
+
+.social-icons a:hover img {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 225, 255, 0.4);
+}
+.hero__text-options {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  color: white;
+}
+
+.version-box {
+  background: #11131a;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 320px;
+  box-shadow: 0 0 12px rgba(0, 225, 255, 0.1);
+  text-align: center;
+}
+
+.version-box h3 {
+  margin: 0 0 12px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.price {
+  font-size: 1.4rem;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.price__old {
+  color: #888;
+  text-decoration: line-through;
+}
+
+.price__new {
+  color: #00e1ff;
+  font-weight: 800;
+}
+
+.version-box .btn {
+  background: #00e1ff;
+  color: #000;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+}
+.difference {
+  background: #0a0c10;
+  color: #fff;
+  padding: 48px 20px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 32px;
+}
+
+.difference-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.difference-list li {
+  background: #11131a;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  /* text-align: left; */
+  position: relative;
+  padding-left: 48px;
+}
+
+.difference-list li span {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #00e1ff;
+  color: #000;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 
   </style>
 </head>
@@ -635,42 +809,59 @@
   <section class="hero" id="hero">
     <div class="container">
       <div class="hero__grid">
-
+  
         <!-- Картинка / справа на десктопе -->
         <div class="hero__img-wrap">
-          <!-- Поставь свои PNG тут -->
           <img class="hero__product" src="1_1.jpg" alt="Game Stick Lite" />
           <img class="hero__characters" src="characters-placeholder.png" alt="" aria-hidden="true" />
         </div>
-
+  
         <!-- Текстовая часть -->
-        <div class="btn_centr">
-          <!-- <span class="badge">Бездротова приставка</span> -->
-<!-- 
-          <h1 class="hero__title">
-            ІГРОВА <span>ПРИСТАВКА</span> Game Stick Lite
-          </h1> -->
-
-          <!-- <p class="hero__subtitle">
-            20&nbsp;000 ретро-ігор з дитинства — запускайте Dendy, Sega, PS1, SNES, Game Boy та інші платформи за 1 клік.
-          </p> -->
-
-          <!-- <div class="hero__stickers">
-            <span class="sticker sticker--orange">20&nbsp;000 ігор</span>
-            <span class="sticker">64&nbsp;ГБ пам’яті</span>
-            <span class="sticker">2 геймпади в комплекті</span>
-            <span class="sticker">Чудовий подарунок</span>
-          </div> -->
-
-          <div class="price">
-          <div class="price__new">2 499 ₴</div>
-          <div class="price__old">3 599 ₴</div>
+        
+        <div class="hero__text-options">
+  
+          <h2>Оберіть версію приставки:</h2>
+  
+          <div class="version-box">
+            <h3>🎮 Заводська</h3>
+            <div class="price">
+              <span class="price__old">850 ₴</span>
+              <span class="price__new">650 ₴</span>
+            </div>
+            <a href="#order" class="btn">Замовити</a>
           </div>
-
-          <a href="#order" class="btn">Замовити зі знижкою</a>
+  
+          <div class="version-box">
+            <h3>⚡ Модифікована</h3>
+            <div class="price">
+              <span class="price__old">1 500 ₴</span>
+              <span class="price__new">1 300 ₴</span>
+            </div>
+            <a href="#order" class="btn">Замовити</a>
+          </div>
+  
         </div>
-
       </div>
+    </div>
+  </section>
+  <section class="difference" id="difference">
+    <div class="container">
+      <h2 class="section-title">Відмінності заводської та модифікованої версії</h2>
+  
+      <ul class="difference-list">
+        <li>
+          <span>1.</span> Унікальна оболонка та коректний переклад
+        </li>
+        <li>
+          <span>2.</span> Топові ігри без дублів і китайської мови
+        </li>
+        <li>
+          <span>3.</span> Інструмент для самостійного додавання ігор
+        </li>
+        <li>
+          <span>4.</span> Можливість додавання ваш перелік ігор
+        </li>
+      </ul>
     </div>
   </section>
   <section class="offer" id="offer">
@@ -823,32 +1014,42 @@
   </section>
   <section class="order-form" id="order">
     <h3>Залишіть заявку</h3>
-    <p class="subtitle">та отримайте консультацію</p>
   
-    <form id="tgForm">
-      <input type="text" name="firstname" placeholder="Введіть Ваше ім’я" required>
-      <input type="text" name="lastname" placeholder="Введіть Ваше Прізвище" required>
-      <input type="tel" name="phone" placeholder="Введіть Ваш телефон" required>
-      <input type="text" name="address" placeholder="Введіть місто та номер відділення нової пошти" required>
-      <button type="submit">ЗАМОВИТИ ЗАРАЗ</button>
+    <form id="tgForm" class="form">
+      <select name="version" required>
+        <option value="" disabled selected>Оберіть версію приставки</option>
+        <option value="Заводська — 650 ₴">🎮 Заводська — 650 ₴</option>
+        <option value="Модифікована — 1300 ₴">⚡ Модифікована — 1300 ₴</option>
+      </select>
+  
+      <input type="text" name="firstname" placeholder="Введіть Ваше ім’я" required />
+      <input type="text" name="lastname" placeholder="Введіть Ваше Прізвище" required />
+      <input type="tel" name="phone" placeholder="Введіть Ваш телефон" required />
+      <input type="text" name="address" placeholder="Місто та відділення НП" required />
+  
+      <button type="submit">Замовити зараз</button>
     </form>
-    
-  
-    <div class="stock-note">* Залишилось <span id="stock2">17</span> шт по знижці</div>
-  
-    <footer class="footer">
-      <p><strong>ТОВ БЕСТ БАЙ</strong><br>
-      Одеса, вул. Кирилівська 128<br>
-      © 2017–2025</p>
-  
-      <p>Графік роботи: ПН–НД: 08:00 – 22:00</p>
-  
-      <p><a href="#">Політика конфіденційності</a><br>
-      <a href="#">Угода користувача</a><br>
-      <a href="#">Умови гарантії та повернення</a></p>
-    </footer>
   </section>
-    
+  
+  <div class="social-block">
+    <p>Слідкуйте за нами:</p>
+    <div class="social-icons">
+      <a href="https://t.me/retrogamingtop" target="_blank" title="Telegram">
+        
+        <img src="icons/icons8-телеграм.gif" alt="Telegram" />
+      </a>
+      <a href="https://www.tiktok.com/@retrogame_stick" target="_blank" title="TikTok">
+        <img src="icons/icons8-тикток-48.png" alt="TikTok" />
+      </a>
+      <a href="https://youtube.com/@retrogaming-s3h?si=TiF3Z48iArPAkeUB" target="_blank" title="YouTube">
+        <img src="icons/icons8-youtube-48.png" alt="YouTube" />
+      </a>
+      <a href="viber://chat?number=%2B380933245789" target="_blank" title="Viber">
+        <img src="icons/icons8-viber-48.png" alt="Viber" />
+      </a>
+    </div>
+  </div>
+  
   
   
   <script>
@@ -869,27 +1070,30 @@
     document.getElementById("tgForm").addEventListener("submit", function (e) {
       e.preventDefault();
   
-      const firstname = this.firstname.value.trim();
-      const lastname = this.lastname.value.trim();
-      const phone = this.phone.value.trim();
-      const address = this.address.value.trim();
+      const form = e.target;
   
-      if (!firstname || !lastname || !phone || !address) {
+      const version = form.querySelector('[name="version"]').value.trim();
+      const firstname = form.querySelector('[name="firstname"]').value.trim();
+      const lastname = form.querySelector('[name="lastname"]').value.trim();
+      const phone = form.querySelector('[name="phone"]').value.trim();
+      const address = form.querySelector('[name="address"]').value.trim();
+  
+      if (!version || !firstname || !lastname || !phone || !address) {
         alert("❗ Заповніть всі поля");
         return;
       }
   
       const message = `
   📥 <b>Нова заявка</b>
-  👤 Ім’я: <b>${firstname} ${lastname}</b>
-  📞 Телефон: <b>${phone}</b>
-  🏙️ Відділення НП: <b>${address}</b>`;
+  🕹️ <b>Версія:</b> ${version}
+  👤 <b>Ім’я:</b> ${firstname} ${lastname}
+  📞 <b>Телефон:</b> ${phone}
+  🏙️ <b>НП:</b> ${address}
+      `;
   
       fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: chat_id,
           text: message,
@@ -898,13 +1102,14 @@
       })
       .then(() => {
         alert("✅ Заявку надіслано!");
-        this.reset();
+        form.reset();
       })
       .catch(() => {
         alert("⚠️ Помилка при відправці");
       });
     });
   </script>
+  
   <script>
     const sliderTrack = document.getElementById("sliderTrack");
     const slides = document.querySelectorAll(".slide");
