@@ -792,53 +792,43 @@
   
 
   <script>
-     const token = "8045817640:AAEmIU5srYYcozjuLHlTvwY39xCRrz2vdyk";
-
-// получаем chat_id автоматически
-async function getChatId() {
-  const res = await fetch(`https://api.telegram.org/bot${token}/getUpdates`);
-  const data = await res.json();
-  const chatId = data.result?.[0]?.message?.chat?.id;
-  return chatId;
-}
-
-document.getElementById("tgForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
-  const name = this.name.value.trim();
-  const phone = this.phone.value.trim();
-
-  if (!name || !phone) return;
-
-  const chatId = await getChatId(); // получаем chat_id
-
-  if (!chatId) {
-    alert("❌ Не вдалося отримати chat_id. Спочатку напишіть щось боту.");
-    return;
-  }
-
-  const message = `📥 <b>Нова заявка</b>\n👤 Ім’я: <b>${name}</b>\n📞 Телефон: <b>${phone}</b>`;
-
-  fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: message,
-      parse_mode: "HTML"
-    })
-  })
-  .then(() => {
-    alert("✅ Заявку надіслано!");
-    this.reset();
-  })
-  .catch(() => {
-    alert("⚠️ Помилка при відправці");
-  });
-});
-    // Если захочешь, можно динамически менять скорость/контент бегущей строки.
-    // Сейчас всё на CSS-анимации и дубле элементов.
+    const token = "8045817640:AAEmIU5srYYcozjuLHlTvwY39xCRrz2vdyk";
+    const chat_id = 226623817;
+  
+    document.getElementById("tgForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const phone = this.phone.value.trim();
+      const name = this.name.value.trim();
+      const city = this.city.value.trim();
+  
+      if (!name || !phone || !city) {
+        alert("❗ Заповніть всі поля");
+        return;
+      }
+  
+      const message = `📥 <b>Нова заявка</b>\n👤 Ім’я: <b>${name}</b>\n📞 Телефон: <b>${phone}</b>\n🏙️ Відділення НП: <b>${city}</b>`;
+  
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chat_id,
+          text: message,
+          parse_mode: "HTML"
+        })
+      })
+      .then(() => {
+        alert("✅ Заявку надіслано!");
+        this.reset();
+      })
+      .catch(() => {
+        alert("⚠️ Помилка при відправці");
+      });
+    });
   </script>
+  
 </body>
 </html>
