@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game Stick Lite — 20 000 ігор</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --primary:#00A3FF;
+      --accent:#FF8A00;
+      --bg-dark:#0E1116;
+      --text:#fff;
+      --muted:#9aa3ad;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Montserrat",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,sans-serif;
+      color:var(--text);
+      background:#0b0d11;
+    }
+
+    /* ====== Бегущая строка ====== */
+    .ticker{
+      position:relative;
+      overflow:hidden;
+      background:#151920;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      height:40px;
+    }
+    .ticker__track{
+      display:flex;
+      align-items:center;
+      white-space:nowrap;
+      will-change:transform;
+      animation:ticker 18s linear infinite;
+    }
+    .ticker__item{
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+      padding:0 1.5rem;
+      font-size:.9rem;
+      color:#e6e9ec;
+      opacity:.9;
+    }
+    .ticker__dot{
+      width:6px;height:6px;border-radius:50%;background:var(--primary);
+      box-shadow:0 0 8px var(--primary);
+    }
+    @keyframes ticker{
+      0%{ transform:translateX(0); }
+      100%{ transform:translateX(-50%); }
+    }
+
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:radial-gradient(circle at 70% 30%, rgba(0,163,255,.2) 0%, rgba(0,0,0,0) 60%) , var(--bg-dark);
+      padding:88px 0 64px;
+    }
+    .container{
+      width:min(1200px, 92%);
+      margin:0 auto;
+      position:relative;
+      z-index:2;
+    }
+    .hero__grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      align-items:center;
+    }
+    .badge{
+      display:inline-block;
+      background:var(--accent);
+      color:#fff;
+      font-weight:700;
+      padding:.35rem .75rem;
+      border-radius:6px;
+      font-size:.9rem;
+      box-shadow:0 6px 18px rgba(255,138,0,.25);
+    }
+    .hero__title{
+      font-size:clamp(32px,6vw,64px);
+      line-height:1.05;
+      font-weight:800;
+      text-transform:uppercase;
+      margin:.5rem 0 1rem;
+    }
+    .hero__title span{
+      color:var(--primary);
+    }
+    .hero__subtitle{
+      color:var(--muted);
+      font-size:1.05rem;
+      max-width:560px;
+      margin-bottom:1.25rem;
+    }
+    .hero__stickers{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:18px 0 26px;
+    }
+    .sticker{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(4px);
+      padding:.65rem .9rem;
+      border-radius:8px;
+      font-weight:600;
+      font-size:.92rem;
+    }
+    .sticker--orange{ background:var(--accent); border-color:var(--accent); color:#fff; }
+    .price{
+      /* display:flex; */
+      align-items:flex-end;
+      text-align: center;
+      gap:14px;
+      margin:24px 0;
+    }
+    .price__new{
+      font-size:2.4rem;
+      font-weight:800;
+      color:#fff;
+    }
+    .price__old{
+      color:#9aa3ad;
+      text-decoration:line-through;
+      margin-bottom:6px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      background:var(--primary);
+      color:#0b0d11;
+      padding:18px 28px;
+      border-radius:12px;
+      font-weight:700;
+      font-size:1.05rem;
+      text-decoration:none;
+      transition:.2s;
+      box-shadow:0 12px 30px rgba(0,163,255,.24);
+    }
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 36px rgba(0,163,255,.3);
+    }
+    .hero__img-wrap{
+      position:relative;
+      min-height:460px;
+    }
+    .hero__product{
+      position:absolute;
+      right:0;
+      bottom:0;
+      width:100%;
+      max-width:520px;
+      filter:drop-shadow(0 24px 60px rgba(0,0,0,.45));
+    }
+    .hero__characters{
+      position:absolute;
+      right:-40px;
+      bottom:-20px;
+      width:210px;
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    /* responsive */
+    @media(max-width:900px){
+      .hero__grid{
+        grid-template-columns:1fr;
+      }
+      .hero__img-wrap{
+        order:-1;
+        min-height:360px;
+      }
+      .hero{
+        padding:60px 0 48px;
+      }
+      .ticker{
+        height:36px;
+      }
+    }
+    .offer {
+  background: linear-gradient(to bottom, #111018, #080b10);
+  color: #fff;
+  text-align: center;
+  padding: 32px 20px;
+  padding-top: 0;
+}
+
+.offer__badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.offer__badges .badge {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.offer__price-box {
+  margin-bottom: 24px;
+}
+
+.price-old {
+  font-size: 1rem;
+  color: #aaa;
+  text-decoration: line-through;
+  margin-bottom: 6px;
+}
+
+.price-old span {
+  font-weight: 700;
+  color: #eee;
+  text-decoration: line-through;
+}
+
+.price-new .economy {
+  background: #00c1ff;
+  color: #000;
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.price-new .final {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.offer__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 24px 0;
+  font-size: 1rem;
+}
+
+.offer__benefits li {
+  margin: 8px 0;
+  text-align: left;
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.offer__btn {
+  background: #00e1ff;
+  color: #000;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  padding: 16px 24px;
+  border-radius: 12px;
+  display: inline-block;
+  box-shadow: 0 0 24px rgba(0, 225, 255, 0.4);
+  transition: all 0.2s;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.offer__btn:hover {
+  box-shadow: 0 0 32px rgba(0, 225, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.offer__left {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.offer__left span {
+  background: #fff;
+  color: #000;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.video {
+  background: radial-gradient(circle at center, #16181d, #0a0d12);
+  padding: 0px 20px;
+  /* padding-top: 0; */
+  color: white;
+  text-align: center;
+}
+
+.video__container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.video__title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.video__box {
+  position: relative;
+  border: 2px solid #00f2ff;
+  border-radius: 14px;
+  box-shadow: 0 0 24px rgba(0, 255, 255, 0.25);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.video__box iframe {
+  width: 100%;
+  height: 360px;
+  display: block;
+  border: none;
+}
+
+.video__desc {
+  font-size: 1rem;
+  color: #d1d5db;
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.video__desc strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .video__box iframe {
+    height: 220px;
+  }
+  .video__title {
+    font-size: 1.5rem;
+  }
+}
+.benefits {
+  padding: 0px 20px;
+  background: linear-gradient(to bottom, #0f1217, #0a0c10);
+  color: white;
+  text-align: center;
+}
+.benefits h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 30px;
+}
+.benefits__grid {
+  display: grid;
+  gap: 24px;
+}
+.benefit {
+  background: white;
+  color: #111;
+  padding: 18px;
+  border-radius: 22px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+}
+.benefit img {
+  width: 80px;
+  flex-shrink: 0;
+  border-radius: 8px;
+}
+.benefit strong {
+  color: #000;
+}
+
+.specs {
+  padding: 50px 20px;
+  background: radial-gradient(circle, #0e141d, #090b10);
+  color: white;
+  text-align: center;
+}
+.specs h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+.specs__image img {
+  width: 100%;
+  max-width: 500px;
+  border: 2px solid #00eaff;
+  border-radius: 12px;
+  box-shadow: 0 0 24px rgba(0,255,255,.2);
+  margin-bottom: 30px;
+}
+.specs__table {
+  text-align: left;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  margin: 0 auto 24px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.specs__table b {
+  display: inline-block;
+  min-width: 160px;
+  color: #fff;
+}
+.specs a.offer__btn {
+  margin-top: 12px;
+}
+
+.reviews {
+  padding: 50px 20px;
+  background: #0b0d11;
+  text-align: center;
+  color: white;
+}
+.reviews h2 {
+  font-size: 1.7rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+}
+.review__box {
+  max-width: 360px;
+  margin: 0 auto;
+  border: 2px solid #00eaff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+}
+.review__box img {
+  width: 100%;
+  display: block;
+}
+.steps {
+  background: #0a0c11;
+  padding: 48px 20px;
+  color: white;
+  text-align: center;
+}
+.steps h2 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+}
+.steps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 440px;
+  margin: 0 auto;
+}
+.step {
+  background: white;
+  color: black;
+  border-radius: 20px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+}
+.step img {
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.order-form {
+  background: #0a0c10;
+  color: white;
+  text-align: center;
+  padding: 48px 20px;
+}
+.order-form h3 {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+.order-form .subtitle {
+  font-size: 1rem;
+  color: #c9cfd8;
+  margin-bottom: 24px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.form input {
+  padding: 14px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+}
+.form button {
+  background: #00e1ff;
+  color: black;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1.05rem;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 0 24px rgba(0, 225, 255, 0.4);
+  transition: 0.2s;
+}
+.form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 32px rgba(0, 225, 255, 0.6);
+}
+
+.stock-note {
+  margin-top: 16px;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+.stock-note span {
+  background: white;
+  color: black;
+  padding: 2px 8px;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+.footer a {
+  color: #9ca3af;
+  text-decoration: underline;
+  display: block;
+  margin: 4px 0;
+}
+.btn_centr {
+    text-align: center;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== Бегущая строка ===== -->
+  <div class="ticker" aria-label="Акційні повідомлення">
+    <div class="ticker__track" id="tickerTrack">
+      <div class="ticker__item"><span class="ticker__dot"></span>Встигніть замовити до кінця тижня зі знижкою</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>9 емуляторів</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>64 ГБ пам’яті</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>2 бездротові геймпади</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>Оплата при отриманні</div>
+      <!-- дублируем для бесконечности -->
+      <<div class="ticker__item"><span class="ticker__dot"></span>Встигніть замовити до кінця тижня зі знижкою</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>9 емуляторів</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>64 ГБ пам’яті</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>2 бездротові геймпади</div>
+      <div class="ticker__item"><span class="ticker__dot"></span>Оплата при отриманні</div>
+    </div>
+  </div>
+
+  <!-- ===== Hero блок ===== -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__grid">
+
+        <!-- Картинка / справа на десктопе -->
+        <div class="hero__img-wrap">
+          <!-- Поставь свои PNG тут -->
+          <img class="hero__product" src="1_1.jpg" alt="Game Stick Lite" />
+          <img class="hero__characters" src="characters-placeholder.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Текстовая часть -->
+        <div class="btn_centr">
+          <!-- <span class="badge">Бездротова приставка</span> -->
+<!-- 
+          <h1 class="hero__title">
+            ІГРОВА <span>ПРИСТАВКА</span> Game Stick Lite
+          </h1> -->
+
+          <!-- <p class="hero__subtitle">
+            20&nbsp;000 ретро-ігор з дитинства — запускайте Dendy, Sega, PS1, SNES, Game Boy та інші платформи за 1 клік.
+          </p> -->
+
+          <!-- <div class="hero__stickers">
+            <span class="sticker sticker--orange">20&nbsp;000 ігор</span>
+            <span class="sticker">64&nbsp;ГБ пам’яті</span>
+            <span class="sticker">2 геймпади в комплекті</span>
+            <span class="sticker">Чудовий подарунок</span>
+          </div> -->
+
+          <div class="price">
+          <div class="price__new">2 499 ₴</div>
+          <div class="price__old">3 599 ₴</div>
+          </div>
+
+          <a href="#order" class="btn">Замовити зі знижкою</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section class="offer" id="offer">
+    <div class="offer__badges">
+      <div class="badge"><span>🚚</span> Доставка по Україні</div>
+      <div class="badge"><span>⏳</span> Обмежена пропозиція</div>
+      <div class="badge"><span>💵</span> Оплата при отриманні</div>
+    </div>
+  
+    <div class="offer__price-box">
+      <div class="price-old">Звичайна ціна: <span>1300 грн</span></div>
+      <div class="price-new">
+        <div class="economy">Ви заощаджуєте -50%</div>
+        <div class="final">649 грн</div>
+      </div>
+    </div>
+  
+    <ul class="offer__benefits">
+      <li>✔ Потужний процесор нового покоління</li>
+      <li>✔ В комплекті 20 000 ігор</li>
+      <li>✔ 2 зручних безпровідних геймпади</li>
+    </ul>
+  
+    <a href="#order" class="offer__btn">ПРИДБАТИ ПО ЗНИЖЦІ</a>
+  
+    <div class="offer__left">* Залишилось <span id="stock">17</span> шт по знижці</div>
+  </section>
+  <section class="video" id="video">
+    <div class="video__container">
+      <h2 class="video__title">ВІДЕО ОГЛЯД<br>ПРИСТАВКИ</h2>
+  
+      <div class="video__box">
+        <!-- Подставь свою ссылку -->
+        <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+      </div>
+  
+      <p class="video__desc">
+        <strong>Бездротовна Ігрова приставка</strong> – це занурення в світ безмежних можливостей геймінгу до нових вражень та емоцій у світі віртуальних пригод.
+      </p>
+    </div>
+  </section>
+  <section class="benefits" id="benefits">
+    <h2>ПЕРЕВАГИ<br>ПРИСТАВКИ</h2>
+  
+    <div class="benefits__grid">
+      <div class="benefit">
+        <img src="6.webp" alt="Компактні розміри">
+        <div>
+          <strong>Компактні розміри!</strong><br>
+          Завдяки своїм компактним розмірам ви можете легко взяти цю приставку з собою куди завгодно.
+        </div>
+      </div>
+      <div class="benefit">
+        <img src="7.webp" alt="Бездротове з'єднання">
+        <div>
+          <strong>Бездротове з'єднання!</strong><br>
+          Забудьте про обмеження проводів — приставка працює через бездротове з'єднання.
+        </div>
+      </div>
+      <div class="benefit">
+        <img src="8.webp" alt="Велика бібліотека ігор">
+        <div>
+          <strong>Велика бібліотека ігор!</strong><br>
+          Приставка має 20 000 ігор — завжди знайдете щось цікаве.
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="specs" id="specs">
+    <h2>ХАРАКТЕРИСТИКИ<br>ПРИСТАВКИ</h2>
+  
+    <div class="specs__image">
+      <img src="character.png" alt="Максимальна комплектація">
+    </div>
+  
+    <div class="specs__table">
+      <div><b>Колір:</b> Чорний;</div>
+      <div><b>Процесор:</b> Game Stick;</div>
+      <div><b>К-сть ігор:</b> 20 000 ігор;</div>
+      <div><b>Інтерфейс:</b> HDMI;</div>
+      <div><b>Живлення:</b> USB, 2 батарейки AAA;</div>
+      <div><b>Оперативна памʼять:</b> 256 мб;</div>
+      <div><b>Вбудована памʼять:</b> 64 гб;</div>
+      <div><b>Комплект:</b><br>
+        - Ігрова консоль;<br>
+        - 2 геймпади;<br>
+        - USB WI-FI адаптер;<br>
+        - HDMI перехідник;<br>
+        - Кабель Micro-USB;<br>
+        - Упаковка;
+      </div>
+    </div>
+  
+    <a href="#order" class="offer__btn">ПРИДБАТИ ПО ЗНИЖЦІ</a>
+  </section>
+  <section class="reviews" id="reviews">
+    <h2>ВІДГУКИ<br>НАШИХ ПОКУПЦІВ</h2>
+  
+    <div class="review__box">
+      <img src="review-message.png" alt="Відгук клієнта" />
+      <!-- стрелки можно сделать позже как слайдер -->
+    </div>
+  </section>
+  <section class="steps" id="steps">
+    <h2>ЯК ЗАМОВИТИ<br>ПРИСТАВКУ?</h2>
+  
+    <div class="steps__list">
+      <div class="step">
+        <img src="step1.png" alt="Форма замовлення" />
+        <div>
+          <strong>Крок 1:</strong><br>Заповніть форму замовлення
+        </div>
+      </div>
+      <div class="step">
+        <img src="step2.png" alt="Дзвінок оператора" />
+        <div>
+          <strong>Крок 2:</strong><br>Дочекайтесь дзвінка оператора
+        </div>
+      </div>
+      <div class="step">
+        <img src="step3.png" alt="Оплата при отриманні" />
+        <div>
+          <strong>Крок 3:</strong><br>Оплатіть товар після отримання
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="order-form" id="order">
+    <h3>Залишіть заявку</h3>
+    <p class="subtitle">та отримайте консультацію</p>
+  
+    <form id="tgForm">
+        <input type="text" name="name" placeholder="Введіть Ваше ім’я" required>
+        <input type="text" name="name" placeholder="Введіть Ваше Прізвище" required>
+        <input type="tel" name="phone" placeholder="Введіть Ваш телефон" required>
+        <input type="text" name="name" placeholder="Введіть місто та номер відділення" required>
+        <button type="submit">ЗАМОВИТИ ЗАРАЗ</button>
+      </form>
+  
+    <div class="stock-note">* Залишилось <span id="stock2">17</span> шт по знижці</div>
+  
+    <footer class="footer">
+      <p><strong>ТОВ БЕСТ БАЙ</strong><br>
+      Одеса, вул. Кирилівська 128<br>
+      © 2017–2025</p>
+  
+      <p>Графік роботи: ПН–НД: 08:00 – 22:00</p>
+  
+      <p><a href="#">Політика конфіденційності</a><br>
+      <a href="#">Угода користувача</a><br>
+      <a href="#">Умови гарантії та повернення</a></p>
+    </footer>
+  </section>
+    
+  
+  
+  <script>
+    let stock2 = 17;
+    setInterval(() => {
+      if (stock2 > 2) {
+        stock2--;
+        document.getElementById('stock2').textContent = stock2;
+      }
+    }, 140000);
+  </script>
+  
+
+  <script>
+     const token = "8045817640:AAEmIU5srYYcozjuLHlTvwY39xCRrz2vdyk";
+
+// получаем chat_id автоматически
+async function getChatId() {
+  const res = await fetch(`https://api.telegram.org/bot${token}/getUpdates`);
+  const data = await res.json();
+  const chatId = data.result?.[0]?.message?.chat?.id;
+  return chatId;
+}
+
+document.getElementById("tgForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const name = this.name.value.trim();
+  const phone = this.phone.value.trim();
+
+  if (!name || !phone) return;
+
+  const chatId = await getChatId(); // получаем chat_id
+
+  if (!chatId) {
+    alert("❌ Не вдалося отримати chat_id. Спочатку напишіть щось боту.");
+    return;
+  }
+
+  const message = `📥 <b>Нова заявка</b>\n👤 Ім’я: <b>${name}</b>\n📞 Телефон: <b>${phone}</b>`;
+
+  fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: message,
+      parse_mode: "HTML"
+    })
+  })
+  .then(() => {
+    alert("✅ Заявку надіслано!");
+    this.reset();
+  })
+  .catch(() => {
+    alert("⚠️ Помилка при відправці");
+  });
+});
+    // Если захочешь, можно динамически менять скорость/контент бегущей строки.
+    // Сейчас всё на CSS-анимации и дубле элементов.
+  </script>
+</body>
+</html>
