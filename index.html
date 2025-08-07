@@ -23,37 +23,50 @@
     }
 
     /* ====== Бегущая строка ====== */
-    .ticker{
-      position:relative;
-      overflow:hidden;
-      background:#151920;
-      border-bottom:1px solid rgba(255,255,255,.06);
-      height:40px;
-    }
-    .ticker__track{
-      display:flex;
-      align-items:center;
-      white-space:nowrap;
-      will-change:transform;
-      animation:ticker 18s linear infinite;
-    }
-    .ticker__item{
-      display:flex;
-      align-items:center;
-      gap:.4rem;
-      padding:0 1.5rem;
-      font-size:.9rem;
-      color:#e6e9ec;
-      opacity:.9;
-    }
-    .ticker__dot{
-      width:6px;height:6px;border-radius:50%;background:var(--primary);
-      box-shadow:0 0 8px var(--primary);
-    }
-    @keyframes ticker{
-      0%{ transform:translateX(0); }
-      100%{ transform:translateX(-50%); }
-    }
+    .ticker {
+  position: relative;
+  overflow: hidden;
+  background: #151920;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  height: 40px;
+}
+
+.ticker__track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: ticker 20s linear infinite;
+  min-width: 2000%; /* <--- ВАЖНО: делает в 2 раза шире контейнера */
+}
+
+.ticker__item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 1.5rem;
+  font-size: 1.3rem;
+  color: #e6e9ec;
+  opacity: 0.9;
+}
+
+.ticker__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 
 
     .hero{
@@ -159,6 +172,7 @@
     .hero__product{
       position:absolute;
       right:0;
+      top: 0;
       bottom:0;
       width:100%;
       max-width:520px;
@@ -183,7 +197,7 @@
         min-height:360px;
       }
       .hero{
-        padding:60px 0 48px;
+        padding:0px 0 0px;
       }
       .ticker{
         height:36px;
@@ -686,6 +700,7 @@
   justify-content: center;
   align-items: flex-start;
   padding: 20px;
+  padding-top: 28%;
   color: white;
 }
 
@@ -789,15 +804,16 @@
 <body>
 
   <!-- ===== Бегущая строка ===== -->
-  <div class="ticker" aria-label="Акційні повідомлення">
+  <div class="ticker">
     <div class="ticker__track" id="tickerTrack">
       <div class="ticker__item"><span class="ticker__dot"></span>Встигніть замовити до кінця тижня зі знижкою</div>
       <div class="ticker__item"><span class="ticker__dot"></span>9 емуляторів</div>
       <div class="ticker__item"><span class="ticker__dot"></span>64 ГБ пам’яті</div>
       <div class="ticker__item"><span class="ticker__dot"></span>2 бездротові геймпади</div>
       <div class="ticker__item"><span class="ticker__dot"></span>Оплата при отриманні</div>
-      <!-- дублируем для бесконечности -->
-      <<div class="ticker__item"><span class="ticker__dot"></span>Встигніть замовити до кінця тижня зі знижкою</div>
+  
+      <!-- Дублируем для бесконечного цикла -->
+      <div class="ticker__item"><span class="ticker__dot"></span>Встигніть замовити до кінця тижня зі знижкою</div>
       <div class="ticker__item"><span class="ticker__dot"></span>9 емуляторів</div>
       <div class="ticker__item"><span class="ticker__dot"></span>64 ГБ пам’яті</div>
       <div class="ticker__item"><span class="ticker__dot"></span>2 бездротові геймпади</div>
@@ -846,7 +862,7 @@
   </section>
   <section class="difference" id="difference">
     <div class="container">
-      <h2 class="section-title">Відмінності заводської та модифікованої версії</h2>
+      <h2 class="section-title">Відмінності модифікованої від заводської версії</h2>
   
       <ul class="difference-list">
         <li>
@@ -887,7 +903,7 @@
   
     <a href="#order" class="offer__btn">ПРИДБАТИ ПО ЗНИЖЦІ</a>
   
-    <div class="offer__left">* Залишилось <span id="stock">17</span> шт по знижці</div>
+    <div class="offer__left">* Залишилось <span id="stock">24</span> шт по знижці</div>
   </section>
   <section class="video" id="video">
     <div class="video__container">
@@ -895,7 +911,15 @@
   
       <div class="video__box">
         <!-- Подставь свою ссылку -->
-        <iframe src="https://www.youtube.com/embed/YOUTUBE_ID" 
+        <iframe src="https://www.youtube.com/embed/xV-MF-V4QsA?si=-HNAqsrxOFIrrLqv" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+      </div>
+      <h2 class="video__title"> ОГЛЯД МОДИФІКОВАНОЇ<br>ПРИСТАВКИ</h2>
+      <div class="video__box">
+        <!-- Подставь свою ссылку -->
+        <iframe src="https://www.youtube.com/embed/Izqx2dEsbG8?si=af7SblPDG3_r3Rl1" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen></iframe>
@@ -1053,11 +1077,11 @@
   
   
   <script>
-    let stock2 = 17;
+    let stock = 24  ;
     setInterval(() => {
-      if (stock2 > 2) {
-        stock2--;
-        document.getElementById('stock2').textContent = stock2;
+      if (stock > 2) {
+        stock--;
+        document.getElementById('stock').textContent = stock;
       }
     }, 140000);
   </script>
