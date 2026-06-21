@@ -407,7 +407,7 @@
 }
 
 .specs {
-  padding: 50px 20px;
+  padding: 0px 20px;
   background: radial-gradient(circle, #0e141d, #090b10);
   color: white;
   text-align: center;
@@ -445,7 +445,7 @@
 }
 
 .reviews {
-  padding: 50px 20px;
+  padding: 0px 20px;
   background: #0b0d11;
   text-align: center;
   color: white;
@@ -469,7 +469,7 @@
 }
 .steps {
   background: #0a0c11;
-  padding: 48px 20px;
+  padding: 0px 20px;
   color: white;
   text-align: center;
 }
@@ -504,7 +504,7 @@
   background: #0a0c10;
   color: white;
   text-align: center;
-  padding: 48px 20px;
+  padding: 0px 20px;
 }
 
 .order-form h3 {
@@ -705,6 +705,7 @@
 }
 
 .version-box {
+  margin: 0 auto;
   background: #11131a;
   border-radius: 12px;
   padding: 20px;
@@ -751,7 +752,7 @@
 .difference {
   background: #0a0c10;
   color: #fff;
-  padding: 48px 20px;
+  padding: 0px 20px;
   text-align: center;
 }
 
@@ -820,7 +821,122 @@
   box-shadow: 5px 5px 0 #000;
 }
 
+/* Основной контейнер */
+.ticker {
+  position: relative;
+  overflow: hidden;
+  background: #0E1116; 
+  height: 44px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #20B2AA; /* Добавил цветную линию для акцента */
+}
 
+/* Движущаяся дорожка */
+.ticker__track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: ticker 30s linear infinite;
+}
+
+/* Элементы строки */
+.ticker__item {
+  padding: 0 20px;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Разделитель */
+.ticker__separator {
+  color: #20B2AA; /* Цвет разделителя в тон акцента */
+  font-weight: 900;
+}
+
+/* Интерактив: при наведении строка замедляется */
+.ticker:hover .ticker__track {
+  animation-play-state: paused; /* Или замени на transition, если хочешь плавность */
+  cursor: pointer;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.prepear {
+  text-align: center;
+  font-family: 'Arial', sans-serif; /* Або твій основний шрифт */
+  font-size: 24px;                 /* Оптимально для мобільних */
+  font-weight: 700;
+  color: #ffffff;                  /* Білий колір для максимального контрасту */
+  margin: 0px 0px 0px;          /* Відступи: зверху більше, щоб відділити від попереднього блоку */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3); /* Легке неонове світіння в тон акцентам */
+  line-height: 1.3;
+}
+/* Hero блок - спрощуємо позиціонування */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 70% 30%, rgba(0,163,255,.2) 0%, rgba(0,0,0,0) 60%) , var(--bg-dark);
+  padding: 0px 0; /* Зменшили відступи для мобільних */
+}
+
+.hero__text-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center; /* Центруємо на мобільних */
+  padding: 0px 0;
+  color: white;
+  width: 100%;
+}
+
+/* Заголовок вибору версії */
+.prepear {
+  text-align: center;
+  font-size: clamp(20px, 5vw, 24px); /* Гнучкий розмір шрифту */
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px 0; /* Прибрали зайві відступи */
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  width: 100%;
+}
+
+/* Версії приставки - щоб вони не "розповзалися" */
+.version-box {
+  background: #11131a;
+  border-radius: 12px;
+  padding: 16px;
+  width: 90%; /* Робимо трохи вужчим для iPhone SE */
+  max-width: 320px;
+  box-shadow: 0 0 12px rgba(0, 225, 255, 0.1);
+  text-align: center;
+}
+@media(max-width: 900px){
+  .hero__grid {
+    display: flex;
+    flex-direction: column; /* Текст буде під картинкою */
+  }
+  .hero__img-wrap {
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+  }
+  .hero__product {
+    position: relative; /* Не absolute, щоб блок займав місце */
+    /* max-width: 300px; */
+  }
+}
   </style>
 </head>
 <body>
@@ -831,21 +947,27 @@
   
   <button id="musicBtn" onclick="toggleMusic()">🎵 Play</button>
   <!-- ===== Бегущая строка ===== -->
-  <div class="ticker">
-    <div class="ticker__track" id="tickerTrack">
-      <div class="ticker__item"><span class="ticker__dot"></span>Встигніть замовити до кінця тижня зі знижкою</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>9 емуляторів</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>64 ГБ пам’яті</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>2 бездротові геймпади</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>Оплата при отриманні</div>
-  
-      <!-- Дублируем для бесконечного цикла -->
-      <div class="ticker__item"><span class="ticker__dot"></span>Встигніть замовити до кінця тижня зі знижкою</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>9 емуляторів</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>64 ГБ пам’яті</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>2 бездротові геймпади</div>
-      <div class="ticker__item"><span class="ticker__dot"></span>Оплата при отриманні</div>
-    </div>
+  <div class="ticker" id="tickerWrapper">
+  <div class="ticker__track" id="tickerTrack">
+    <div class="ticker__item">🔥 ОСТАННІ 24 ПРИСТАВКИ ЗА АКЦІЙНОЮ ЦІНОЮ 850 ГРН!</div>
+    <div class="ticker__separator">|</div>
+    <div class="ticker__item">🚚 ВІДПРАВКА СЬОГОДНІ ПРИ ЗАМОВЛЕННІ ДО 17:00</div>
+    <div class="ticker__separator">|</div>
+    <div class="ticker__item">💵 ОПЛАТА ПРИ ОТРИМАННІ ТА ПЕРЕВІРКА НА ПОШТІ</div>
+    <div class="ticker__separator">|</div>
+    <div class="ticker__item">⭐ РЕЙТИНГ 4.9/5 НА ОСНОВІ 150+ ВІДГУКІВ!</div>
+    <div class="ticker__separator">|</div>
+    
+    <div class="ticker__item">🔥 ОСТАННІ 24 ПРИСТАВКИ ЗА АКЦІЙНОЮ ЦІНОЮ 850 ГРН!</div>
+    <div class="ticker__separator">|</div>
+    <div class="ticker__item">🚚 ВІДПРАВКА СЬОГОДНІ ПРИ ЗАМОВЛЕННІ ДО 17:00</div>
+    <div class="ticker__separator">|</div>
+    <div class="ticker__item">💵 ОПЛАТА ПРИ ОТРИМАННІ ТА ПЕРЕВІРКА НА ПОШТІ</div>
+    <div class="ticker__separator">|</div>
+    <div class="ticker__item">⭐ РЕЙТИНГ 4.9/5 НА ОСНОВІ 150+ ВІДГУКІВ!</div>
+    <div class="ticker__separator">|</div>
+  </div>
+</div>
   </div>
 
   <!-- ===== Hero блок ===== -->
@@ -863,7 +985,7 @@
         
         <div class="hero__text-options">
   
-          <h2>Оберіть версію приставки:</h2>
+          <h2 class="prepear">Оберіть версію приставки:</h2>
   
           <div class="version-box">
             <h3>🎮 Заводська</h3>
@@ -1011,6 +1133,32 @@
   
     <a href="#order" class="offer__btn">ПРИДБАТИ ПО ЗНИЖЦІ</a>
   </section>
+  <section class="why-us" id="why-us" style="padding: 0px 20px; background: #0b0d11; color: white; text-align: center;">
+  <div class="container">
+    <h2 style="font-size: 1.8rem; font-weight: 900; margin-bottom: 32px;">ЧОМУ КУПУЮТЬ У НАС?</h2>
+    
+    <div style="display: grid; gap: 20px; max-width: 600px; margin: 0 auto; text-align: left;">
+      <div style="background: #1a1c22; padding: 20px; border-radius: 12px; border: 1px solid #333;">
+        <strong>🎬 2 роки контенту в TikTok:</strong><br>
+        Ми не зникаємо після продажу. Нас знають у TikTok, де ми 2 роки знімаємо огляди та допомагаємо гравцям.
+      </div>
+      <div style="background: #1a1c22; padding: 20px; border-radius: 12px; border: 1px solid #333;">
+        <strong>🛠️ Підтримка та інструкції:</strong><br>
+        Ви отримаєте відео-інструкцію з підключення. Ми завжди на зв'язку в Telegram/Viber, якщо виникнуть питання.
+      </div>
+      <div style="background: #1a1c22; padding: 20px; border-radius: 12px; border: 1px solid #333;">
+        <strong>🎮 Свій список ігор:</strong><br>
+        У наших модифікованих версіях тільки найкращі ігри без «китайщини» та дублів.
+      </div>
+    </div>
+
+    <div style="margin-top: 30px;">
+      <a href="https://www.tiktok.com/@retrogame_stick" target="_blank" class="btn" style="background: #000; border: 2px solid #00eaff; color: #fff;">
+        ПОДИВИТИСЬ ОГЛЯДИ В TIKTOK
+      </a>
+    </div>
+  </div>
+</section>
   <section class="reviews" id="reviews">
     <h2>ВІДГУКИ<br>НАШИХ ПОКУПЦІВ</h2>
   
@@ -1025,6 +1173,13 @@
         <div class="slide"><img src="./comments/photo_5_2025-07-25_16-24-52.jpg" alt="Відгук 5"></div>
         <!-- <div class="slide"><img src="./comments/photo_6_2025-07-25_16-24-52.jpg" alt="Відгук 6"></div> -->
         <div class="slide"><img src="./comments/photo_7_2025-07-25_16-24-52.jpg" alt="Відгук 7"></div>
+        <div class="slide"><img src="./comments/1.jpg" alt="Відгук 5"></div>
+        <div class="slide"><img src="./comments/2.jpg" alt="Відгук 5"></div>
+        <div class="slide"><img src="./comments/3.jpg" alt="Відгук 5"></div>
+        <div class="slide"><img src="./comments/4.jpg" alt="Відгук 5"></div>
+        <div class="slide"><img src="./comments/5.jpg" alt="Відгук 5"></div>
+        <div class="slide"><img src="./comments/6.jpg" alt="Відгук 5"></div>
+        <div class="slide"><img src="./comments/7.jpg" alt="Відгук 5"></div>
         <!-- <div class="slide"><img src="./comments/photo_8_2025-07-25_16-24-52.jpg" alt="Відгук 8"></div> -->
       </div>
   
@@ -1052,7 +1207,7 @@
       <div class="step">
         <img src="step2.png" alt="Дзвінок оператора" />
         <div>
-          <strong>Крок 2:</strong><br>Дочекайтесь дзвінка оператора
+          <strong>Крок 2:</strong><br>Оператор з Вами зв`яжеться
         </div>
       </div>
       <div class="step">
