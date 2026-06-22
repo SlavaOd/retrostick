@@ -1247,9 +1247,9 @@ src="https://www.facebook.com/tr?id=1326160189705251&ev=PageView&noscript=1"
       </select>
   
       <input type="text" name="firstname" placeholder="Введіть Ваше ім’я" required />
-      <input type="text" name="lastname" placeholder="Введіть Ваше Прізвище" required />
+      <!-- <input type="text" name="lastname" placeholder="Введіть Ваше Прізвище" required /> -->
       <input type="tel" name="phone" placeholder="Введіть Ваш телефон" required />
-      <input type="text" name="address" placeholder="Місто та відділення НП" required />
+      <!-- <input type="text" name="address" placeholder="Місто та відділення НП" required /> -->
   
       <button type="submit">Замовити зараз</button>
     </form>
@@ -1311,21 +1311,33 @@ src="https://www.facebook.com/tr?id=1326160189705251&ev=PageView&noscript=1"
   
       const version = form.querySelector('[name="version"]').value.trim();
       const firstname = form.querySelector('[name="firstname"]').value.trim();
-      const lastname = form.querySelector('[name="lastname"]').value.trim();
+      // const lastname = form.querySelector('[name="lastname"]').value.trim();
       const phone = form.querySelector('[name="phone"]').value.trim();
-      const address = form.querySelector('[name="address"]').value.trim();
+      // const address = form.querySelector('[name="address"]').value.trim();
   
-      if (!version || !firstname || !lastname || !phone || !address) {
+      // if (!version || !firstname || !lastname || !phone || !address) {
+      //   alert("❗ Заповніть всі поля");
+      //   return;
+      // }
+
+      if (!version || !firstname || !phone ) {
         alert("❗ Заповніть всі поля");
         return;
       }
   
+  //     const message = `
+  // 📥 <b>Нова заявка</b>
+  // 🕹️ <b>Версія:</b> ${version}
+  // 👤 <b>Ім’я:</b> ${firstname} ${lastname}
+  // 📞 <b>Телефон:</b> ${phone}
+  // 🏙️ <b>НП:</b> ${address}
+  //     `;
+
       const message = `
   📥 <b>Нова заявка</b>
   🕹️ <b>Версія:</b> ${version}
-  👤 <b>Ім’я:</b> ${firstname} ${lastname}
+  👤 <b>Ім’я:</b> ${firstname} 
   📞 <b>Телефон:</b> ${phone}
-  🏙️ <b>НП:</b> ${address}
       `;
   
       fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
